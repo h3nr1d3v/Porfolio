@@ -1,0 +1,54 @@
+---
+const experiences = [
+  {
+    company: "Metacortex",
+    position: "Programmer",
+    period: "1999",
+    description: "Developed respectable software from a cubicle.",
+  },
+  {
+    company: "Nebuchadnezzar",
+    position: "The One",
+    period: "1999 - Present",
+    description: "Responsible for saving the world.",
+  },
+];
+---
+
+<section id="experience" class="w-full py-20">
+  <div class="space-y-8">
+    <h2
+      class="text-3xl md:text-4xl font-bold mb-12 text-center text-light-accent dark:text-dark-accent animate-slide-up"
+    >
+      Experience
+    </h2>
+
+    <div class="space-y-8">
+      {
+        experiences.map((exp, index) => (
+          <div
+            class="bg-light-secondary dark:bg-dark-secondary rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 animate-slide-in"
+            style={`animation-delay: ${index * 200}ms`}
+          >
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <h3 class="text-xl font-semibold text-light-accent dark:text-dark-accent">
+                  {exp.company}
+                </h3>
+                <p class="text-light-tertiary dark:text-dark-tertiary">
+                  {exp.position}
+                </p>
+              </div>
+              <span class="text-light-tertiary dark:text-dark-tertiary">
+                {exp.period}
+              </span>
+            </div>
+            <p class="text-light-accent dark:text-dark-accent">
+              {exp.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

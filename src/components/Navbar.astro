@@ -1,0 +1,127 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+---
+
+<header
+  id="navbar"
+  class="fixed w-full top-0 z-50 bg-light-primary/80 dark:bg-dark-primary/80 backdrop-blur-sm shadow-lg transition-all duration-300"
+>
+  <div class="w-full flex justify-center">
+    <nav class="w-full max-w-[500px] px-4 py-3">
+      <div class="flex items-center justify-between">
+        <div class="hidden md:flex items-center space-x-6">
+          <a
+            href="#hero"
+            class="text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary transition-all duration-300"
+          >
+            About
+          </a>
+          <a
+            href="#skills"
+            class="text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary transition-all duration-300"
+          >
+            Skills
+          </a>
+          <a
+            href="#experience"
+            class="text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary transition-all duration-300"
+          >
+            Experience
+          </a>
+          <a
+            href="#projects"
+            class="text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary transition-all duration-300"
+          >
+            Projects
+          </a>
+          <a
+            href="#contact"
+            class="text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary transition-all duration-300"
+          >
+            Contact
+          </a>
+          <ThemeToggle />
+        </div>
+        <button
+          id="mobile-menu-button"
+          class="md:hidden text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary transition-all duration-300"
+          aria-label="Toggle mobile menu"
+        >
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </nav>
+  </div>
+  <div id="mobile-menu" class="md:hidden hidden">
+    <div class="w-full flex justify-center">
+      <div class="w-full max-w-[500px] px-4 py-2 space-y-1">
+        <a
+          href="#hero"
+          class="block px-3 py-2 rounded-md text-base font-medium text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary hover:bg-light-secondary dark:hover:bg-dark-secondary transition-all duration-300"
+        >
+          About
+        </a>
+        <a
+          href="#skills"
+          class="block px-3 py-2 rounded-md text-base font-medium text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary hover:bg-light-secondary dark:hover:bg-dark-secondary transition-all duration-300"
+        >
+          Skills
+        </a>
+        <a
+          href="#experience"
+          class="block px-3 py-2 rounded-md text-base font-medium text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary hover:bg-light-secondary dark:hover:bg-dark-secondary transition-all duration-300"
+        >
+          Experience
+        </a>
+        <a
+          href="#projects"
+          class="block px-3 py-2 rounded-md text-base font-medium text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary hover:bg-light-secondary dark:hover:bg-dark-secondary transition-all duration-300"
+        >
+          Projects
+        </a>
+        <a
+          href="#contact"
+          class="block px-3 py-2 rounded-md text-base font-medium text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary hover:bg-light-secondary dark:hover:bg-dark-secondary transition-all duration-300"
+        >
+          Contact
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  let lastScrollY = window.scrollY;
+
+  window.addEventListener("scroll", () => {
+    const navbar = document.getElementById("navbar");
+    if (lastScrollY < window.scrollY) {
+      navbar.classList.add("-translate-y-full");
+    } else {
+      navbar.classList.remove("-translate-y-full");
+    }
+    lastScrollY = window.scrollY;
+  });
+
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  mobileMenuButton.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+
+  document.addEventListener("click", (event) => {
+    if (
+      !mobileMenu.contains(event.target as Node) &&
+      !mobileMenuButton.contains(event.target as Node)
+    ) {
+      mobileMenu.classList.add("hidden");
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 768) {
+      mobileMenu.classList.add("hidden");
+    }
+  });
+</script>

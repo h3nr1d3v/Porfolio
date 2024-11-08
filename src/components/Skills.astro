@@ -1,0 +1,39 @@
+---
+const technologies = [
+  { name: "Bash", icon: "fas fa-terminal" },
+  { name: "Git", icon: "fab fa-git-alt" },
+  { name: "Linux", icon: "fab fa-linux" },
+  { name: "MySQL", icon: "fas fa-database" },
+  { name: "Python", icon: "fab fa-python" },
+  { name: "Vim", icon: "fas fa-terminal" },
+];
+---
+
+<section id="skills" class="w-full py-20">
+  <div class="space-y-8">
+    <h2
+      class="text-3xl md:text-4xl font-bold mb-12 text-center text-light-accent dark:text-dark-accent animate-slide-up"
+    >
+      Technologies and Tools
+    </h2>
+
+    <div class="flex flex-wrap justify-center gap-6">
+      {
+        technologies.map((tech, index) => (
+          <div
+            class="bg-light-secondary dark:bg-dark-secondary rounded-lg p-6 flex items-center gap-3 shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105 animate-fade-in"
+            style={`animation-delay: ${index * 100}ms`}
+          >
+            <i
+              class={`${tech.icon} text-3xl text-light-accent dark:text-dark-accent`}
+              aria-hidden="true"
+            />
+            <span class="text-light-accent dark:text-dark-accent text-lg font-medium">
+              {tech.name}
+            </span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

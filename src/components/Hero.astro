@@ -1,0 +1,80 @@
+---
+import { Image } from "astro:assets";
+---
+
+<section id="hero" class="min-h-screen flex items-center justify-center py-20">
+  <div class="container mx-auto px-6 text-center">
+    <div class="mb-8 animate-slide-up">
+      <img
+        src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/22b22287602523.5dbd29081561d.gif"
+        alt="Welcome GIF"
+        class="mx-auto w-full max-w-[500px] h-auto rounded-lg shadow-lg"
+      />
+    </div>
+
+    <h1
+      class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-light-accent dark:text-dark-accent animate-slide-up"
+      style="animation-delay: 0.2s;"
+    >
+      I'm Henry P's
+    </h1>
+
+    <div class="mb-6 animate-slide-up" style="animation-delay: 0.4s;">
+      <img
+        id="typing-svg"
+        src="https://readme-typing-svg.herokuapp.com/?lines=Junior+Python+Developer;Tech+Enthusiast;Always+Learning&center=true&width=380&height=45"
+        alt="Typing SVG"
+        class="mx-auto"
+      />
+    </div>
+
+    <p
+      class="text-lg md:text-xl text-light-tertiary dark:text-dark-tertiary mb-8 max-w-2xl mx-auto animate-slide-up"
+      style="animation-delay: 0.6s;"
+    >
+      I am a developer passionate about creating innovative and efficient
+      solutions. With experience in Backend development, I enjoy facing new
+      challenges and constantly learning.
+    </p>
+
+    <div
+      class="flex flex-wrap justify-center items-center gap-4 mb-12 animate-slide-up"
+      style="animation-delay: 0.8s;"
+    >
+      <a
+        href="mailto:mp792819@gmail.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary transition-colors duration-300"
+      >
+        <i class="fas fa-envelope text-4xl"></i>
+      </a>
+      <a
+        href="https://github.com/h3nr1d3v"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary transition-colors duration-300"
+      >
+        <i class="fab fa-github text-4xl"></i>
+      </a>
+      <a
+        href="tel:+1234567890"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary transition-colors duration-300"
+      >
+        <i class="fas fa-phone-alt text-4xl"></i>
+      </a>
+    </div>
+
+    <a
+      href="/path-to-your-cv.pdf"
+      download
+      class="inline-flex items-center px-6 py-3 bg-light-accent dark:bg-dark-accent text-light-primary dark:text-dark-primary rounded-full hover:bg-light-tertiary dark:hover:bg-dark-tertiary transition-all duration-300 hover:scale-105 animate-slide-up"
+      style="animation-delay: 1s;"
+    >
+      <i class="fas fa-download mr-2"></i>
+      Download CV
+    </a>
+  </div>
+</section>
