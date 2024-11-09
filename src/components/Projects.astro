@@ -1,6 +1,4 @@
 ---
-import { Icon } from "astro-icon";
-
 const projects = [
   {
     id: 1,
@@ -8,7 +6,7 @@ const projects = [
     description:
       "A highly customized Arch Linux environment featuring Hyprland as the window manager, with dynamic color schemes that adapt to your wallpaper.",
     technologies: ["Linux", "Lua", "Bash"],
-    image: "/images/hypr-dot.svg",
+    image: "/images/hypr-dot.png",
     github: "https://github.com/h3nr1d3v/hypr-dot",
     category: "Linux",
   },
@@ -17,29 +15,29 @@ const projects = [
     title: "SkirkBOT",
     description: "A Discord bot for server management and fun interactions.",
     technologies: ["Python", "Discord.py"],
-    image: "/images/SKIRK-BOT.svg",
+    image: "/images/SKIRK-BOT.png",
     github: "https://github.com/h3nr1d3v/Skirk",
     category: "Python",
   },
   {
     id: 3,
-    title: "dotfiles",
+    title: "Reels-Downloader",
     description:
-      "My personal dotfiles for Arch Linux, including configurations for various applications and utilities.",
-    technologies: ["Linux", "Bash"],
-    image: "/images/dotfiles.png",
-    github: "#",
-    category: "Linux",
+      "It is a program that allows you to download Instagram reels easily and quickly. You just need to enter the link of the post that contains the reel and the program will download it.",
+    technologies: ["Python"],
+    image: "/images/Reels-Downloader.png",
+    github: "https://github.com/h3nr1d3v/Reels-Downloader",
+    category: "Python",
   },
   {
     id: 4,
-    title: "Portfolio",
+    title: "AI-Assistant ",
     description:
-      "A simple and elegant portfolio template built with Astro and Tailwind CSS.",
-    technologies: ["Astro", "Tailwind CSS"],
-    image: "/images/portfolio.png",
-    github: "#",
-    category: "Other",
+      "This is an artificial intelligence assistant program that uses the OpenAI API and the Pyttsx3 library to provide spoken answers to user questions.",
+    technologies: ["Python"],
+    image: "/images/AI-Assistant.png",
+    github: "https://github.com/h3nr1d3v/AI-Assistant",
+    category: "Python",
   },
 ];
 
@@ -186,10 +184,10 @@ const categories = [
 
 <script>
   let currentSlide = 0;
-  let visibleSlides = [];
+  let visibleSlides: number[] = [];
   let isPaused = false;
-  let autoplayInterval;
-  const slider = document.getElementById("projects-slider");
+  let autoplayInterval: number | null = null;
+  const slider = document.getElementById("projects-slider") as HTMLElement;
   const slides = document.querySelectorAll(".project-slide");
 
   function updateSlider() {
@@ -212,7 +210,7 @@ const categories = [
     }
   }
 
-  function goToSlide(index) {
+  function goToSlide(index: number) {
     if (index >= 0 && index < visibleSlides.length) {
       currentSlide = index;
       updateSlider();
@@ -241,14 +239,14 @@ const categories = [
     }
   }
 
-  function updateCategoryButtons(activeCategory) {
+  function updateCategoryButtons(activeCategory: string) {
     document.querySelectorAll(".category-btn").forEach((button) => {
       const category = button.getAttribute("data-category");
       button.classList.toggle("active", category === activeCategory);
     });
   }
 
-  function filterProjects(category) {
+  function filterProjects(category: string) {
     const projects = document.querySelectorAll(".project-slide");
     visibleSlides = [];
     currentSlide = 0;
@@ -264,14 +262,16 @@ const categories = [
         projectCategory === category ||
         technologies.includes(category);
 
-      project.style.display = shouldShow ? "block" : "none";
+      (project as HTMLElement).style.display = shouldShow ? "block" : "none";
       if (shouldShow) {
         visibleSlides.push(index);
       }
     });
 
     document.querySelectorAll(".dot").forEach((dot, index) => {
-      dot.style.display = visibleSlides.includes(index) ? "block" : "none";
+      (dot as HTMLElement).style.display = visibleSlides.includes(index)
+        ? "block"
+        : "none";
     });
 
     updateSlider();
@@ -287,14 +287,16 @@ const categories = [
     });
 
     slider.addEventListener("click", (e) => {
-      if (!e.target.closest("a")) {
+      if (!(e.target as HTMLElement).closest("a")) {
         togglePause();
       }
     });
 
     document.querySelectorAll("[data-category]").forEach((button) => {
       button.addEventListener("click", (e) => {
-        const category = e.currentTarget.getAttribute("data-category");
+        const category = (e.currentTarget as HTMLElement).getAttribute(
+          "data-category"
+        );
         if (category) {
           filterProjects(category);
         }
