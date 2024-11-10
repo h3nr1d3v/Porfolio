@@ -1,0 +1,101 @@
+{
+  "nav": {
+    "about": "Sobre mí",
+    "skills": "Habilidades",
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "welcomeAlt": "Animación de bienvenida",
+    "title": "Hola, soy Henry P",
+    "typingSvgUrl": "https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=435&lines=Desarrollador+Full+Stack;Entusiasta+de+Linux;Contribuidor+de+Código+Abierto",
+    "typingSvgAlt": "Texto animado: Desarrollador Full Stack, Entusiasta de Linux, Contribuidor de Código Abierto",
+    "description": "Soy un desarrollador full-stack apasionado por Linux y proyectos de código abierto. ¡Construyamos algo increíble juntos!",
+    "emailAriaLabel": "Enviar un correo electrónico",
+    "githubAriaLabel": "Visitar perfil de GitHub",
+    "phoneAriaLabel": "Llamarme",
+    "downloadCV": "Descargar CV"
+  },
+  "about": {
+    "title": "Sobre Mí",
+    "description": "Soy un desarrollador full-stack apasionado por crear aplicaciones web eficientes, escalables y fáciles de usar. Con una sólida base en tecnologías front-end y back-end, disfruto enfrentando problemas complejos y convirtiendo ideas en realidad.",
+    "experienceTitle": "Experiencia Profesional",
+    "experience1": {
+      "title": "Desarrollador Full Stack Senior",
+      "company": "Tech Innovations Inc.",
+      "period": "2019 - Presente",
+      "description": "Lideré el desarrollo de múltiples aplicaciones web, mentoré a desarrolladores junior e implementé mejores prácticas para la calidad y el rendimiento del código."
+    },
+    "experience2": {
+      "title": "Desarrollador Full Stack",
+      "company": "WebSolutions Co.",
+      "period": "2016 - 2019",
+      "description": "Desarrollé y mantuve varios proyectos de clientes, enfocándome en el diseño responsivo y optimizando consultas de base de datos para mejorar el rendimiento."
+    }
+  },
+  "skills": {
+    "title": "Habilidades y Tecnologías",
+    "bash": "Bash",
+    "git": "Git",
+    "linux": "Linux",
+    "mysql": "MySQL",
+    "python": "Python",
+    "vim": "Vim"
+  },
+  "experience": {
+    "title": "Experiencia Laboral",
+    "job1": {
+      "company": "Tech Innovations Inc.",
+      "position": "Desarrollador Full Stack Senior",
+      "period": "2019 - Presente",
+      "description": "Liderando equipos de desarrollo, diseñando soluciones escalables e implementando tecnologías de vanguardia para impulsar el crecimiento del negocio."
+    },
+    "job2": {
+      "company": "WebSolutions Co.",
+      "position": "Desarrollador Full Stack",
+      "period": "2016 - 2019",
+      "description": "Desarrollé y mantuve múltiples aplicaciones web, enfocándome en el diseño responsivo y optimizando el rendimiento."
+    }
+  },
+  "projects": {
+    "title": "Proyectos",
+    "subtitle": "Echa un vistazo a algunos de mis trabajos recientes",
+    "viewOnGitHub": "Ver en GitHub",
+    "categories": {
+      "all": "Todos",
+      "linux": "Linux",
+      "python": "Python",
+      "bash": "Bash",
+      "lua": "Lua",
+      "css": "CSS",
+      "mysql": "MySQL",
+      "other": "Otros"
+    },
+    "project1": {
+      "title": "Hypr Dot",
+      "description": "Una configuración moderna y personalizable para el gestor de ventanas Hypr, con un diseño elegante y flujos de trabajo eficientes.",
+      "tech1": "Bash",
+      "tech2": "Lua",
+      "tech3": "CSS"
+    },
+    "project2": {
+      "title": "Herramienta CLI Python",
+      "description": "Una herramienta de interfaz de línea de comandos construida con Python para automatizar tareas comunes de desarrollo.",
+      "tech1": "Python",
+      "tech2": "Click",
+      "tech3": "PyYAML"
+    },
+    "project3": {
+      "title": "Optimizador de Base de Datos",
+      "description": "Una herramienta de optimización de bases de datos MySQL que analiza el rendimiento de las consultas y sugiere mejoras.",
+      "tech1": "Python",
+      "tech2": "MySQL",
+      "tech3": "SQLAlchemy"
+    }
+  },
+  "contact": {
+    "title": "Ponte en Contacto",
+    "phoneNumber": "+1 (234) 567-8900"
+  }
+}

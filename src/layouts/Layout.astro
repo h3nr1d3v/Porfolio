@@ -7,19 +7,44 @@ interface Props {
 }
 
 const { title } = Astro.props;
+
+// Meta tags content
+const description =
+  "Henry P's Portfolio - Backend Developer passionate about creating innovative solutions";
+const image = "/images/preview.png"; // Make sure this image exists in your public folder
+const url = "https://spectacular-monstera-6836d2.netlify.app";
 ---
 
 <!doctype html>
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Henry P's Developer Portfolio" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
     <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+
+    <!-- Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto+Slab:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
     <link
@@ -33,11 +58,9 @@ const { title } = Astro.props;
   >
     <div class="fixed inset-0 z-[-2]">
       <!-- Light theme background -->
-      <!-- Fondo con cuadrícula y degradado radial -->
       <div
         class="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"
       >
-        <!-- Degradado radial en el centro superior -->
         <div
           class="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,#C9EBFF,transparent)]"
         >
@@ -51,7 +74,7 @@ const { title } = Astro.props;
       </div>
     </div>
     <Navbar />
-    <main class="w-full flex flex-col items-center">
+    <main class="w-full flex flex-col items-center pt-24">
       <div class="max-w-[900px] w-full px-4">
         <slot />
       </div>
@@ -62,7 +85,7 @@ const { title } = Astro.props;
 <style is:global>
   :root {
     --font-primary: "Montserrat", sans-serif;
-    --font-secondary: "Noto Sans JP", sans-serif;
+    --font-secondary: "Roboto Slab", sans-serif;
   }
 
   html {

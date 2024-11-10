@@ -1,0 +1,189 @@
+---
+const certifications = [
+  {
+    id: 1,
+    title: "Oracle Next Education F2 T4 Back-end",
+    organization: "Oracle + Alura Latam",
+    date: "2023",
+    image: "/images/OracleNext.png",
+    link: "https://app.aluracursos.com/program/certificate/f4bda55f-ac51-49b4-8c62-91267a88d488",
+    skills: ["Java", "OOP", "Spring Boot"],
+  },
+  {
+    id: 2,
+    title: "Personalización de entorno en Linux",
+    organization: "Hack4u.io",
+    date: "2023",
+    image: "/images/CustomizacionLinux.png",
+    link: "https://hack4u.io/check-certificate/",
+    skills: ["Linux", "Bash", "Vim"],
+  },
+  // Add more certifications as needed
+];
+---
+
+<section id="certifications" class="w-full py-16 max-w-4xl mx-auto px-6">
+  <div class="space-y-8">
+    <h2
+      class="text-3xl md:text-4xl font-bold mb-12 text-left text-light-accent dark:text-dark-accent animate-slide-up flex items-center gap-3"
+    >
+      <i class="fas fa-certificate"></i>
+      Certifications
+    </h2>
+
+    <div class="relative overflow-hidden" style="min-height: 400px;">
+      <div
+        id="certifications-slider"
+        class="flex transition-transform duration-500 cursor-pointer"
+      >
+        {
+          certifications.map((cert) => (
+            <div class="certification-slide w-full flex-shrink-0 bg-light-secondary dark:bg-dark-secondary rounded-xl overflow-hidden shadow-lg">
+              <div class="flex flex-col md:flex-row h-full">
+                <div class="md:w-1/2 p-6 flex flex-col justify-between">
+                  <div>
+                    <h3 class="text-2xl font-semibold mb-3 text-light-accent dark:text-dark-accent">
+                      {cert.title}
+                    </h3>
+                    <p class="text-base md:text-lg mb-4 text-light-tertiary dark:text-dark-tertiary">
+                      {cert.organization} - {cert.date}
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                      {cert.skills.map((skill) => (
+                        <span class="px-3 py-1 text-sm md:text-base rounded-full bg-light-primary dark:bg-dark-primary text-light-accent dark:text-dark-accent">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <a
+                    href={cert.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary transition-colors flex items-center gap-2 text-lg mt-4"
+                  >
+                    <i class="fas fa-external-link-alt" aria-hidden="true" />
+                    <span>View Certificate</span>
+                  </a>
+                </div>
+                <div class="md:w-1/2 h-[300px] md:h-auto">
+                  <img
+                    src={cert.image}
+                    alt={`${cert.title} Certificate`}
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+        {
+          certifications.map((_, index) => (
+            <button
+              class="dot w-3 h-3 rounded-full bg-light-tertiary dark:bg-dark-tertiary hover:bg-light-accent dark:hover:bg-dark-accent transition-colors"
+              data-index={index}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .certification-slide {
+    transform: translateX(0);
+    opacity: 1;
+    transition: all 0.5s ease;
+  }
+
+  #certifications-slider {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+
+  .dot.active {
+    @apply bg-light-accent dark:bg-dark-accent;
+  }
+</style>
+
+<script>
+  let currentSlide = 0;
+  let isPaused = false;
+  let autoplayInterval: number | null = null;
+  const slider = document.getElementById(
+    "certifications-slider"
+  ) as HTMLElement;
+  const slides = document.querySelectorAll(".certification-slide");
+  const totalSlides = slides.length;
+
+  function updateSlider() {
+    if (slider) {
+      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+      updateDots();
+    }
+  }
+
+  function updateDots() {
+    document.querySelectorAll(".dot").forEach((dot, index) => {
+      dot.classList.toggle("active", index === currentSlide);
+    });
+  }
+
+  function nextSlide() {
+    if (!isPaused) {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateSlider();
+    }
+  }
+
+  function goToSlide(index: number) {
+    if (index >= 0 && index < totalSlides) {
+      currentSlide = index;
+      updateSlider();
+    }
+  }
+
+  function startAutoplay() {
+    if (!autoplayInterval) {
+      autoplayInterval = setInterval(nextSlide, 5000);
+    }
+  }
+
+  function stopAutoplay() {
+    if (autoplayInterval) {
+      clearInterval(autoplayInterval);
+      autoplayInterval = null;
+    }
+  }
+
+  function togglePause() {
+    isPaused = !isPaused;
+    if (isPaused) {
+      stopAutoplay();
+    } else {
+      startAutoplay();
+    }
+  }
+
+  document.addEventListener("astro:page-load", () => {
+    document.querySelectorAll(".dot").forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        goToSlide(index);
+      });
+    });
+
+    slider?.addEventListener("click", (e) => {
+      if (!(e.target as HTMLElement).closest("a")) {
+        togglePause();
+      }
+    });
+
+    startAutoplay();
+    updateDots();
+  });
+</script>

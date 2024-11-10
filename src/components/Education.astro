@@ -1,32 +1,34 @@
 ---
-const experiences = [
+const education = [
   {
-    company: "None at this time",
-    position: "None at this time",
-    period: "0000",
-    description: "None at this time",
+    school: "Universidad De Investigacion Y Desarrollo",
+    degree: "Systems Engineering",
+    period: "2021 -Actually",
+    description:
+      "I have been immersed in advanced programming concepts, software architecture, and algorithm design. My coursework includes topics such as data structures, web development and databasese, giving me a strong foundation for tackling complex software development challenges.",
   },
   {
-    company: "None at this time",
-    position: "None at this time",
-    period: "0000",
-    description: "None at this time",
+    school: "I.E.T.A.C - Antonio De Lebrija",
+    degree: "High School",
+    period: "2014 - 2019",
+    description:
+      "I participated in research projects and school presentations that broadened my analytical and communication skills. This stage prepared me to continue my path in the world of technology and programming.",
   },
 ];
 ---
 
-<section id="experience" class="w-full py-16 max-w-4xl mx-auto px-6">
+<section id="education" class="w-full py-16 max-w-4xl mx-auto px-6">
   <div class="space-y-8">
     <h2
       class="text-3xl md:text-4xl font-bold mb-12 text-left text-light-accent dark:text-dark-accent animate-slide-up flex items-center gap-3"
     >
-      <i class="fas fa-briefcase"></i>
-      Experience
+      <i class="fas fa-graduation-cap"></i>
+      Education
     </h2>
 
     <div class="space-y-8">
       {
-        experiences.map((exp, index) => (
+        education.map((edu, index) => (
           <div
             class="bg-light-secondary dark:bg-dark-secondary rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 animate-slide-in"
             style={`animation-delay: ${index * 200}ms`}
@@ -34,18 +36,18 @@ const experiences = [
             <div class="flex justify-between items-start mb-4">
               <div>
                 <h3 class="text-xl font-semibold text-light-accent dark:text-dark-accent">
-                  {exp.company}
+                  {edu.school}
                 </h3>
                 <p class="text-light-tertiary dark:text-dark-tertiary">
-                  {exp.position}
+                  {edu.degree}
                 </p>
               </div>
               <span class="text-light-tertiary dark:text-dark-tertiary">
-                {exp.period}
+                {edu.period}
               </span>
             </div>
             <p class="text-light-accent dark:text-dark-accent">
-              {exp.description}
+              {edu.description}
             </p>
           </div>
         ))

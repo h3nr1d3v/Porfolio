@@ -53,32 +53,24 @@ const categories = [
 ];
 ---
 
-<section id="projects" class="w-full py-20">
+<section id="projects" class="w-full py-16 max-w-4xl mx-auto px-6">
   <div class="space-y-8">
-    <div class="text-center mb-12 animate-slide-up">
-      <div class="flex items-center justify-center gap-3 mb-4">
-        <i
-          class="fas fa-code-branch text-4xl text-light-accent dark:text-dark-accent"
-        ></i>
-        <h2
-          class="text-3xl md:text-4xl font-bold text-light-accent dark:text-dark-accent"
-        >
-          Projects
-        </h2>
-      </div>
-      <p
-        class="text-xl md:text-2xl text-light-tertiary dark:text-dark-tertiary"
+    <div class="mb-12 animate-slide-up">
+      <h2
+        class="text-3xl md:text-4xl font-bold text-left text-light-accent dark:text-dark-accent flex items-center gap-3"
       >
+        <i class="fas fa-project-diagram"></i>
+        Projects
+      </h2>
+      <p class="text-xl text-light-tertiary dark:text-dark-tertiary mt-4">
         Everything you can <span class="text-light-accent dark:text-dark-accent"
           >imagine</span
         >, you can <span class="text-light-accent dark:text-dark-accent"
           >program</span
         >
       </p>
-    </div>
-
-    <div
-      class="flex flex-wrap justify-center gap-4 mb-12 animate-slide-up"
+    </div><div
+      class="flex flex-wrap gap-4 mb-12 animate-slide-up"
       style="animation-delay: 200ms;"
     >
       {
@@ -106,7 +98,7 @@ const categories = [
               data-technologies={project.technologies.join(",")}
               class="project-slide w-full flex-shrink-0 bg-light-secondary dark:bg-dark-secondary rounded-xl overflow-hidden shadow-lg"
             >
-              <div class="flex flex-col md:flex-row">
+              <div class="flex flex-col md:flex-row h-full">
                 <div class="md:w-1/2 p-6 flex flex-col justify-between">
                   <div>
                     <h3 class="text-2xl font-semibold mb-3 text-light-accent dark:text-dark-accent">
@@ -133,7 +125,7 @@ const categories = [
                     <span>View on GitHub</span>
                   </a>
                 </div>
-                <div class="md:w-1/2">
+                <div class="md:w-1/2 h-[300px] md:h-auto">
                   <img
                     src={project.image}
                     alt={`Screenshot of ${project.title}`}
@@ -158,153 +150,155 @@ const categories = [
         }
       </div>
     </div>
+
+    <style>
+      .project-slide {
+        transform: translateX(0);
+        opacity: 1;
+        transition: all 0.5s ease;
+      }
+
+      #projects-slider {
+        display: flex;
+        transition: transform 0.5s ease;
+      }
+
+      .dot.active {
+        @apply bg-light-accent dark:bg-dark-accent;
+      }
+
+      .category-btn.active {
+        @apply bg-light-accent dark:bg-dark-accent text-light-primary dark:text-dark-primary transform scale-105;
+      }
+    </style>
+
+    <script>
+      let currentSlide = 0;
+      let visibleSlides: number[] = [];
+      let isPaused = false;
+      let autoplayInterval: number | null = null;
+      const slider = document.getElementById("projects-slider") as HTMLElement;
+      const slides = document.querySelectorAll(".project-slide");
+
+      function updateSlider() {
+        if (slider && visibleSlides.length > 0) {
+          slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+          updateDots();
+        }
+      }
+
+      function updateDots() {
+        document.querySelectorAll(".dot").forEach((dot, index) => {
+          dot.classList.toggle("active", index === currentSlide);
+        });
+      }
+
+      function nextSlide() {
+        if (visibleSlides.length > 0 && !isPaused) {
+          currentSlide = (currentSlide + 1) % visibleSlides.length;
+          updateSlider();
+        }
+      }
+
+      function goToSlide(index: number) {
+        if (index >= 0 && index < visibleSlides.length) {
+          currentSlide = index;
+          updateSlider();
+        }
+      }
+
+      function startAutoplay() {
+        if (!autoplayInterval) {
+          autoplayInterval = setInterval(nextSlide, 5000);
+        }
+      }
+
+      function stopAutoplay() {
+        if (autoplayInterval) {
+          clearInterval(autoplayInterval);
+          autoplayInterval = null;
+        }
+      }
+
+      function togglePause() {
+        isPaused = !isPaused;
+        if (isPaused) {
+          stopAutoplay();
+        } else {
+          startAutoplay();
+        }
+      }
+
+      function updateCategoryButtons(activeCategory: string) {
+        document.querySelectorAll(".category-btn").forEach((button) => {
+          const category = button.getAttribute("data-category");
+          button.classList.toggle("active", category === activeCategory);
+        });
+      }
+
+      function filterProjects(category: string) {
+        const projects = document.querySelectorAll(".project-slide");
+        visibleSlides = [];
+        currentSlide = 0;
+
+        updateCategoryButtons(category);
+
+        projects.forEach((project, index) => {
+          const projectCategory = project.getAttribute("data-category");
+          const technologies =
+            project.getAttribute("data-technologies")?.split(",") || [];
+          const shouldShow =
+            category === "All" ||
+            projectCategory === category ||
+            technologies.includes(category);
+
+          (project as HTMLElement).style.display = shouldShow
+            ? "block"
+            : "none";
+          if (shouldShow) {
+            visibleSlides.push(index);
+          }
+        });
+
+        document.querySelectorAll(".dot").forEach((dot, index) => {
+          (dot as HTMLElement).style.display = visibleSlides.includes(index)
+            ? "block"
+            : "none";
+        });
+
+        updateSlider();
+      }
+
+      document.addEventListener("astro:page-load", () => {
+        visibleSlides = Array.from(slides).map((_, index) => index);
+
+        document.querySelectorAll(".dot").forEach((dot, index) => {
+          dot.addEventListener("click", () => {
+            goToSlide(index);
+          });
+        });
+
+        slider.addEventListener("click", (e) => {
+          if (!(e.target as HTMLElement).closest("a")) {
+            togglePause();
+          }
+        });
+
+        document.querySelectorAll("[data-category]").forEach((button) => {
+          button.addEventListener("click", (e) => {
+            const category = (e.currentTarget as HTMLElement).getAttribute(
+              "data-category"
+            );
+            if (category) {
+              filterProjects(category);
+            }
+          });
+        });
+
+        updateCategoryButtons("All");
+        startAutoplay();
+        updateDots();
+      });
+    </script>
   </div>
 </section>
-
-<style>
-  .project-slide {
-    transform: translateX(0);
-    opacity: 1;
-    transition: all 0.5s ease;
-  }
-
-  #projects-slider {
-    display: flex;
-    transition: transform 0.5s ease;
-  }
-
-  .dot.active {
-    @apply bg-light-accent dark:bg-dark-accent;
-  }
-
-  .category-btn.active {
-    @apply bg-light-accent dark:bg-dark-accent text-light-primary dark:text-dark-primary transform scale-105;
-  }
-</style>
-
-<script>
-  let currentSlide = 0;
-  let visibleSlides: number[] = [];
-  let isPaused = false;
-  let autoplayInterval: number | null = null;
-  const slider = document.getElementById("projects-slider") as HTMLElement;
-  const slides = document.querySelectorAll(".project-slide");
-
-  function updateSlider() {
-    if (slider && visibleSlides.length > 0) {
-      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-      updateDots();
-    }
-  }
-
-  function updateDots() {
-    document.querySelectorAll(".dot").forEach((dot, index) => {
-      dot.classList.toggle("active", index === currentSlide);
-    });
-  }
-
-  function nextSlide() {
-    if (visibleSlides.length > 0 && !isPaused) {
-      currentSlide = (currentSlide + 1) % visibleSlides.length;
-      updateSlider();
-    }
-  }
-
-  function goToSlide(index: number) {
-    if (index >= 0 && index < visibleSlides.length) {
-      currentSlide = index;
-      updateSlider();
-    }
-  }
-
-  function startAutoplay() {
-    if (!autoplayInterval) {
-      autoplayInterval = setInterval(nextSlide, 5000);
-    }
-  }
-
-  function stopAutoplay() {
-    if (autoplayInterval) {
-      clearInterval(autoplayInterval);
-      autoplayInterval = null;
-    }
-  }
-
-  function togglePause() {
-    isPaused = !isPaused;
-    if (isPaused) {
-      stopAutoplay();
-    } else {
-      startAutoplay();
-    }
-  }
-
-  function updateCategoryButtons(activeCategory: string) {
-    document.querySelectorAll(".category-btn").forEach((button) => {
-      const category = button.getAttribute("data-category");
-      button.classList.toggle("active", category === activeCategory);
-    });
-  }
-
-  function filterProjects(category: string) {
-    const projects = document.querySelectorAll(".project-slide");
-    visibleSlides = [];
-    currentSlide = 0;
-
-    updateCategoryButtons(category);
-
-    projects.forEach((project, index) => {
-      const projectCategory = project.getAttribute("data-category");
-      const technologies =
-        project.getAttribute("data-technologies")?.split(",") || [];
-      const shouldShow =
-        category === "All" ||
-        projectCategory === category ||
-        technologies.includes(category);
-
-      (project as HTMLElement).style.display = shouldShow ? "block" : "none";
-      if (shouldShow) {
-        visibleSlides.push(index);
-      }
-    });
-
-    document.querySelectorAll(".dot").forEach((dot, index) => {
-      (dot as HTMLElement).style.display = visibleSlides.includes(index)
-        ? "block"
-        : "none";
-    });
-
-    updateSlider();
-  }
-
-  document.addEventListener("astro:page-load", () => {
-    visibleSlides = Array.from(slides).map((_, index) => index);
-
-    document.querySelectorAll(".dot").forEach((dot, index) => {
-      dot.addEventListener("click", () => {
-        goToSlide(index);
-      });
-    });
-
-    slider.addEventListener("click", (e) => {
-      if (!(e.target as HTMLElement).closest("a")) {
-        togglePause();
-      }
-    });
-
-    document.querySelectorAll("[data-category]").forEach((button) => {
-      button.addEventListener("click", (e) => {
-        const category = (e.currentTarget as HTMLElement).getAttribute(
-          "data-category"
-        );
-        if (category) {
-          filterProjects(category);
-        }
-      });
-    });
-
-    updateCategoryButtons("All");
-    startAutoplay();
-    updateDots();
-  });
-</script>

@@ -1,0 +1,101 @@
+{
+  "nav": {
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "welcomeAlt": "Welcome animation",
+    "title": "Hi, I'm Henry P",
+    "typingSvgUrl": "https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=435&lines=Full+Stack+Developer;Linux+Enthusiast;Open+Source+Contributor",
+    "typingSvgAlt": "Animated text: Full Stack Developer, Linux Enthusiast, Open Source Contributor",
+    "description": "I'm a passionate full-stack developer with a love for Linux and open-source projects. Let's build something amazing together!",
+    "emailAriaLabel": "Send an email",
+    "githubAriaLabel": "Visit GitHub profile",
+    "phoneAriaLabel": "Call me",
+    "downloadCV": "Download CV"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "I'm a full-stack developer with a passion for creating efficient, scalable, and user-friendly web applications. With a strong foundation in both front-end and back-end technologies, I enjoy tackling complex problems and turning ideas into reality.",
+    "experienceTitle": "Professional Experience",
+    "experience1": {
+      "title": "Senior Full Stack Developer",
+      "company": "Tech Innovations Inc.",
+      "period": "2019 - Present",
+      "description": "Lead development of multiple web applications, mentored junior developers, and implemented best practices for code quality and performance."
+    },
+    "experience2": {
+      "title": "Full Stack Developer",
+      "company": "WebSolutions Co.",
+      "period": "2016 - 2019",
+      "description": "Developed and maintained various client projects, focusing on responsive design and optimizing database queries for improved performance."
+    }
+  },
+  "skills": {
+    "title": "Skills & Technologies",
+    "bash": "Bash",
+    "git": "Git",
+    "linux": "Linux",
+    "mysql": "MySQL",
+    "python": "Python",
+    "vim": "Vim"
+  },
+  "experience": {
+    "title": "Work Experience",
+    "job1": {
+      "company": "Tech Innovations Inc.",
+      "position": "Senior Full Stack Developer",
+      "period": "2019 - Present",
+      "description": "Leading development teams, architecting scalable solutions, and implementing cutting-edge technologies to drive business growth."
+    },
+    "job2": {
+      "company": "WebSolutions Co.",
+      "position": "Full Stack Developer",
+      "period": "2016 - 2019",
+      "description": "Developed and maintained multiple web applications, focusing on responsive design and optimizing performance."
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Check out some of my recent work",
+    "viewOnGitHub": "View on GitHub",
+    "categories": {
+      "all": "All",
+      "linux": "Linux",
+      "python": "Python",
+      "bash": "Bash",
+      "lua": "Lua",
+      "css": "CSS",
+      "mysql": "MySQL",
+      "other": "Other"
+    },
+    "project1": {
+      "title": "Hypr Dot",
+      "description": "A modern and customizable configuration for the Hypr window manager, featuring a sleek design and efficient workflows.",
+      "tech1": "Bash",
+      "tech2": "Lua",
+      "tech3": "CSS"
+    },
+    "project2": {
+      "title": "Python CLI Tool",
+      "description": "A command-line interface tool built with Python for automating common development tasks.",
+      "tech1": "Python",
+      "tech2": "Click",
+      "tech3": "PyYAML"
+    },
+    "project3": {
+      "title": "Database Optimizer",
+      "description": "A MySQL database optimization tool that analyzes query performance and suggests improvements.",
+      "tech1": "Python",
+      "tech2": "MySQL",
+      "tech3": "SQLAlchemy"
+    }
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "phoneNumber": "+1 (234) 567-8900"
+  }
+}

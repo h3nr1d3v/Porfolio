@@ -2,42 +2,61 @@
 import ThemeToggle from "./ThemeToggle.astro";
 ---
 
-<header
-  id="navbar"
-  class="fixed w-full top-0 z-50 bg-light-primary/80 dark:bg-dark-primary/80 backdrop-blur-sm shadow-lg transition-all duration-300"
->
-  <div class="w-full flex justify-center">
-    <nav class="w-full max-w-[500px] px-4 py-3">
+<div class="w-full flex justify-center">
+  <header
+    id="navbar"
+    class="fixed top-0 z-50 rounded-full mt-4 bg-light-primary/50 dark:bg-dark-primary/50 backdrop-blur-sm shadow-lg transition-all duration-300"
+  >
+    <nav class="px-6 py-3">
       <div class="flex items-center justify-between">
-        <div class="hidden md:flex items-center space-x-6">
+        <div class="hidden md:flex items-center space-x-8">
           <a
             href="#hero"
-            class="text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary transition-all duration-300"
+            class="nav-link text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary transition-all duration-300 flex items-center gap-2"
           >
+            <i class="fas fa-user"></i>
             About
           </a>
           <a
             href="#skills"
-            class="text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary transition-all duration-300"
+            class="nav-link text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary transition-all duration-300 flex items-center gap-2"
           >
+            <i class="fas fa-code"></i>
             Skills
           </a>
           <a
             href="#experience"
-            class="text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary transition-all duration-300"
+            class="nav-link text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary transition-all duration-300 flex items-center gap-2"
           >
+            <i class="fas fa-briefcase"></i>
             Experience
           </a>
           <a
             href="#projects"
-            class="text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary transition-all duration-300"
+            class="nav-link text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary transition-all duration-300 flex items-center gap-2"
           >
+            <i class="fas fa-project-diagram"></i>
             Projects
           </a>
           <a
-            href="#contact"
-            class="text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary transition-all duration-300"
+            href="#certifications"
+            class="nav-link text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary transition-all duration-300 flex items-center gap-2"
           >
+            <i class="fas fa-certificate"></i>
+            Certifications
+          </a>
+          <a
+            href="#education"
+            class="nav-link text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary transition-all duration-300 flex items-center gap-2"
+          >
+            <i class="fas fa-graduation-cap"></i>
+            Education
+          </a>
+          <a
+            href="#contact"
+            class="nav-link text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary transition-all duration-300 flex items-center gap-2"
+          >
+            <i class="fas fa-globe"></i>
             Contact
           </a>
           <ThemeToggle />
@@ -51,58 +70,111 @@ import ThemeToggle from "./ThemeToggle.astro";
         </button>
       </div>
     </nav>
-  </div>
-  <div id="mobile-menu" class="md:hidden hidden">
-    <div class="w-full flex justify-center">
-      <div class="w-full max-w-[500px] px-4 py-2 space-y-1">
-        <a
-          href="#hero"
-          class="block px-3 py-2 rounded-md text-base font-medium text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary hover:bg-light-secondary dark:hover:bg-dark-secondary transition-all duration-300"
-        >
-          About
-        </a>
-        <a
-          href="#skills"
-          class="block px-3 py-2 rounded-md text-base font-medium text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary hover:bg-light-secondary dark:hover:bg-dark-secondary transition-all duration-300"
-        >
-          Skills
-        </a>
-        <a
-          href="#experience"
-          class="block px-3 py-2 rounded-md text-base font-medium text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary hover:bg-light-secondary dark:hover:bg-dark-secondary transition-all duration-300"
-        >
-          Experience
-        </a>
-        <a
-          href="#projects"
-          class="block px-3 py-2 rounded-md text-base font-medium text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary hover:bg-light-secondary dark:hover:bg-dark-secondary transition-all duration-300"
-        >
-          Projects
-        </a>
-        <a
-          href="#contact"
-          class="block px-3 py-2 rounded-md text-base font-medium text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary hover:bg-light-secondary dark:hover:bg-dark-secondary transition-all duration-300"
-        >
-          Contact
-        </a>
-      </div>
+  </header>
+</div>
+
+<div id="mobile-menu" class="fixed top-0 left-0 w-full md:hidden hidden z-40">
+  <div class="w-full flex justify-center mt-20">
+    <div
+      class="w-full max-w-[835px] mx-4 p-4 space-y-1 bg-white dark:bg-gray-800 rounded-lg shadow-lg"
+    >
+      <a
+        href="#hero"
+        class="nav-link block px-3 py-2 rounded-md text-base font-medium text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary hover:bg-light-secondary dark:hover:bg-dark-secondary transition-all duration-300"
+      >
+        About
+      </a>
+      <a
+        href="#skills"
+        class="nav-link block px-3 py-2 rounded-md text-base font-medium text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary hover:bg-light-secondary dark:hover:bg-dark-secondary transition-all duration-300"
+      >
+        Skills
+      </a>
+      <a
+        href="#experience"
+        class="nav-link block px-3 py-2 rounded-md text-base font-medium text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary hover:bg-light-secondary dark:hover:bg-dark-secondary transition-all duration-300"
+      >
+        Experience
+      </a>
+      <a
+        href="#projects"
+        class="nav-link block px-3 py-2 rounded-md text-base font-medium text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary hover:bg-light-secondary dark:hover:bg-dark-secondary transition-all duration-300"
+      >
+        Projects
+      </a>
+      <a
+        href="#certifications"
+        class="nav-link block px-3 py-2 rounded-md text-base font-medium text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary hover:bg-light-secondary dark:hover:bg-dark-secondary transition-all duration-300"
+      >
+        Certifications
+      </a>
+      <a
+        href="#education"
+        class="nav-link block px-3 py-2 rounded-md text-base font-medium text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary hover:bg-light-secondary dark:hover:bg-dark-secondary transition-all duration-300"
+      >
+        Education
+      </a>
+      <a
+        href="#contact"
+        class="nav-link block px-3 py-2 rounded-md text-base font-medium text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary hover:bg-light-secondary dark:hover:bg-dark-secondary transition-all duration-300"
+      >
+        Contact
+      </a>
     </div>
   </div>
-</header>
+</div>
 
 <script>
   let lastScrollY = window.scrollY;
+  let activeSection: string | null = null;
+
+  function updateActiveSection() {
+    const sections = document.querySelectorAll("section");
+    const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      const sectionId = section.getAttribute("id");
+
+      if (
+        scrollPosition >= sectionTop &&
+        scrollPosition < sectionTop + sectionHeight &&
+        sectionId
+      ) {
+        if (activeSection !== sectionId) {
+          activeSection = sectionId;
+          updateNavLinks();
+        }
+      }
+    });
+  }
+
+  function updateNavLinks() {
+    document.querySelectorAll(".nav-link").forEach((link) => {
+      const href = link.getAttribute("href")?.substring(1);
+      if (href === activeSection) {
+        link.classList.add("text-light-secondary", "dark:text-dark-secondary");
+      } else {
+        link.classList.remove(
+          "text-light-secondary",
+          "dark:text-dark-secondary"
+        );
+      }
+    });
+  }
 
   window.addEventListener("scroll", () => {
     const navbar = document.getElementById("navbar");
     if (navbar) {
       if (lastScrollY < window.scrollY) {
-        navbar.classList.add("-translate-y-full");
+        navbar.style.transform = "translateY(-150%)";
       } else {
-        navbar.classList.remove("-translate-y-full");
+        navbar.style.transform = "translateY(0)";
       }
       lastScrollY = window.scrollY;
     }
+    updateActiveSection();
   });
 
   const mobileMenuButton = document.getElementById("mobile-menu-button");
@@ -129,4 +201,7 @@ import ThemeToggle from "./ThemeToggle.astro";
       }
     });
   }
+
+  // Initialize active section on page load
+  document.addEventListener("DOMContentLoaded", updateActiveSection);
 </script>
