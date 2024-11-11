@@ -1,5 +1,12 @@
 ---
-const experiences = [
+interface Experience {
+  title: string;
+  company: string;
+  period: string;
+  description: string;
+}
+
+const experiences: Experience[] = [
   {
     title: "Senior Full Stack Developer",
     company: "Tech Innovation Corp",
@@ -7,30 +14,54 @@ const experiences = [
     description:
       "Leading development of enterprise-scale applications and mentoring junior developers.",
   },
-  // Add more experiences as needed
 ];
 ---
 
-<section id="about" class="w-full py-20">
+<section id="about" class="w-full py-20 max-w-4xl mx-auto px-6">
   <div class="space-y-8">
-    <h2 class="text-3xl font-bold mb-12 text-center text-blue-600">About Me</h2>
-    <div class="prose max-w-none mb-16 text-gray-700 dark:text-gray-300">
-      <p class="animate-slide-up">
-        I'm a passionate Full Stack Developer with over 5 years of experience...
+    <h2
+      class="text-3xl font-bold mb-12 text-center text-light-accent dark:text-dark-accent"
+    >
+      <i class="fas fa-user-circle mr-2" aria-hidden="true"></i>
+      About Me
+    </h2>
+    <div class="prose max-w-none mb-16 text-light-accent dark:text-dark-accent">
+      <p class="animate-slide-up text-lg leading-relaxed">
+        I'm a passionate Full Stack Developer with over 5 years of experience in
+        building web applications and solving complex technical challenges. My
+        focus is on creating efficient, scalable, and maintainable solutions
+        that deliver real value to users.
       </p>
     </div>
-    <h3 class="text-2xl font-bold mb-8 text-blue-600">
+    <h3 class="text-2xl font-bold mb-8 text-light-accent dark:text-dark-accent">
       Professional Experience
     </h3>
     <div class="space-y-8">
       {
-        experiences.map((exp) => (
-          <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 animate-slide-in">
-            <h4 class="text-xl font-semibold text-blue-600">{exp.title}</h4>
-            <p class="text-gray-700 dark:text-gray-300">{exp.company}</p>
-            <p class="text-gray-500 dark:text-gray-400">{exp.period}</p>
-            <p class="text-gray-600 dark:text-gray-300">{exp.description}</p>
-          </div>
+        experiences.map((exp, index) => (
+          <article
+            class="bg-light-secondary dark:bg-dark-secondary p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 animate-slide-in"
+            style={`animation-delay: ${index * 200}ms`}
+          >
+            <h4 class="text-xl font-semibold text-light-accent dark:text-dark-accent mb-2">
+              {exp.title}
+            </h4>
+            <div class="flex flex-wrap justify-between items-center mb-4">
+              <p class="text-light-tertiary dark:text-dark-tertiary">
+                <i class="fas fa-building mr-2" aria-hidden="true" />
+                {exp.company}
+              </p>
+              <p class="text-light-tertiary dark:text-dark-tertiary">
+                <i class="fas fa-calendar-alt mr-2" aria-hidden="true" />
+                <time datetime={exp.period.replace(" - ", "/")}>
+                  {exp.period}
+                </time>
+              </p>
+            </div>
+            <p class="text-light-accent dark:text-dark-accent leading-relaxed">
+              {exp.description}
+            </p>
+          </article>
         ))
       }
     </div>

@@ -1,11 +1,41 @@
 ---
 const technologies = [
-  { name: "Bash", icon: "fas fa-terminal" },
-  { name: "Git", icon: "fab fa-git-alt" },
-  { name: "Linux", icon: "fab fa-linux" },
-  { name: "MySQL", icon: "fas fa-database" },
-  { name: "Python", icon: "fab fa-python" },
-  { name: "Vim", icon: "fas fa-terminal" },
+  {
+    name: "Bash",
+    icon: "fas fa-terminal",
+    url: "https://www.gnu.org/software/bash/",
+    description: "Command line interpreter",
+  },
+  {
+    name: "Git",
+    icon: "fab fa-git-alt",
+    url: "https://git-scm.com/",
+    description: "Version control system",
+  },
+  {
+    name: "Linux",
+    icon: "fab fa-linux",
+    url: "https://www.kernel.org/",
+    description: "Operating system",
+  },
+  {
+    name: "MySQL",
+    icon: "fas fa-database",
+    url: "https://www.mysql.com/",
+    description: "Relational database",
+  },
+  {
+    name: "Python",
+    icon: "fab fa-python",
+    url: "https://www.python.org/",
+    description: "Programming language",
+  },
+  {
+    name: "Vim",
+    icon: "fas fa-terminal",
+    url: "https://www.vim.org/",
+    description: "Text editor",
+  },
 ];
 ---
 
@@ -14,25 +44,34 @@ const technologies = [
     <h2
       class="text-3xl md:text-4xl font-bold mb-12 text-left text-light-accent dark:text-dark-accent animate-slide-up flex items-center gap-3"
     >
-      <i class="fas fa-code"></i>
+      <i class="fas fa-code" aria-hidden="true"></i>
       Technologies and Tools
     </h2>
 
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       {
         technologies.map((tech, index) => (
-          <div
-            class="bg-light-secondary dark:bg-dark-secondary rounded-lg p-6 flex items-center gap-3 shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105 animate-fade-in"
+          <a
+            href={tech.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group bg-light-secondary dark:bg-dark-secondary rounded-lg p-6 flex flex-col gap-3 shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105 animate-fade-in focus:outline-none focus:ring-2 focus:ring-light-accent dark:focus:ring-dark-accent"
             style={`animation-delay: ${index * 100}ms`}
+            aria-label={`Learn more about ${tech.name}`}
           >
-            <i
-              class={`${tech.icon} text-3xl text-light-accent dark:text-dark-accent`}
-              aria-hidden="true"
-            />
-            <span class="text-light-accent dark:text-dark-accent text-lg font-medium">
-              {tech.name}
-            </span>
-          </div>
+            <div class="flex items-center gap-3">
+              <i
+                class={`${tech.icon} text-3xl text-light-accent dark:text-dark-accent group-hover:scale-110 transition-transform`}
+                aria-hidden="true"
+              />
+              <span class="text-light-accent dark:text-dark-accent text-lg font-medium group-hover:text-light-tertiary dark:group-hover:text-dark-tertiary transition-colors">
+                {tech.name}
+              </span>
+            </div>
+            <p class="text-sm text-light-tertiary dark:text-dark-tertiary">
+              {tech.description}
+            </p>
+          </a>
         ))
       }
     </div>

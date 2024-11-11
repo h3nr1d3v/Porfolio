@@ -1,16 +1,19 @@
 ---
-const experiences = [
+interface WorkExperience {
+  company: string;
+  position: string;
+  period: string;
+  description: string;
+  skills?: string[];
+}
+
+const experiences: WorkExperience[] = [
   {
     company: "None at this time",
     position: "None at this time",
     period: "0000",
     description: "None at this time",
-  },
-  {
-    company: "None at this time",
-    position: "None at this time",
-    period: "0000",
-    description: "None at this time",
+    skills: ["Skill 1", "Skill 2", "Skill 3"],
   },
 ];
 ---
@@ -20,34 +23,50 @@ const experiences = [
     <h2
       class="text-3xl md:text-4xl font-bold mb-12 text-left text-light-accent dark:text-dark-accent animate-slide-up flex items-center gap-3"
     >
-      <i class="fas fa-briefcase"></i>
-      Experience
+      <i class="fas fa-briefcase" aria-hidden="true"></i>
+      Professional Experience
     </h2>
 
     <div class="space-y-8">
       {
         experiences.map((exp, index) => (
-          <div
-            class="bg-light-secondary dark:bg-dark-secondary rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 animate-slide-in"
+          <article
+            class="group bg-light-secondary dark:bg-dark-secondary rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 animate-slide-in"
             style={`animation-delay: ${index * 200}ms`}
           >
-            <div class="flex justify-between items-start mb-4">
+            <header class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-4">
               <div>
-                <h3 class="text-xl font-semibold text-light-accent dark:text-dark-accent">
-                  {exp.company}
+                <h3 class="text-xl font-semibold text-light-accent dark:text-dark-accent group-hover:text-light-tertiary dark:group-hover:text-dark-tertiary transition-colors">
+                  {exp.position}
                 </h3>
                 <p class="text-light-tertiary dark:text-dark-tertiary">
-                  {exp.position}
+                  <i class="fas fa-building mr-2" aria-hidden="true" />
+                  {exp.company}
                 </p>
               </div>
-              <span class="text-light-tertiary dark:text-dark-tertiary">
+              <time
+                datetime={exp.period.replace(" - ", "/")}
+                class="text-light-tertiary dark:text-dark-tertiary bg-light-primary/10 dark:bg-dark-primary/10 px-3 py-1 rounded-full text-sm"
+              >
+                <i class="fas fa-calendar-alt mr-2" aria-hidden="true" />
                 {exp.period}
-              </span>
-            </div>
-            <p class="text-light-accent dark:text-dark-accent">
+              </time>
+            </header>
+
+            <p class="text-light-accent dark:text-dark-accent mb-4 leading-relaxed">
               {exp.description}
             </p>
-          </div>
+
+            {exp.skills && (
+              <footer class="flex flex-wrap gap-2 mt-4">
+                {exp.skills.map((skill) => (
+                  <span class="px-3 py-1 text-sm rounded-full bg-light-primary/10 dark:bg-dark-primary/10 text-light-accent dark:text-dark-accent">
+                    {skill}
+                  </span>
+                ))}
+              </footer>
+            )}
+          </article>
         ))
       }
     </div>

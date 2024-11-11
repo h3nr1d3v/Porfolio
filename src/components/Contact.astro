@@ -1,38 +1,88 @@
+---
+interface SocialLink {
+  platform: string;
+  url: string;
+  icon: string;
+  label: string;
+}
+
+const socialLinks: SocialLink[] = [
+  {
+    platform: "GitHub",
+    url: "https://github.com/h3nr1d3v",
+    icon: "fab fa-github",
+    label: "Visit my GitHub profile",
+  },
+  {
+    platform: "Phone",
+    url: "tel:+1234567890",
+    icon: "fas fa-phone",
+    label: "Call me",
+  },
+];
+
+function getShortenedUrl(url: string): string {
+  if (url.startsWith("mailto:")) {
+    return url.split(":")[1];
+  } else if (url.startsWith("https://github.com/")) {
+    return url.split("/").pop()!;
+  } else if (url.startsWith("tel:")) {
+    return url.split(":")[1];
+  }
+  return url;
+}
+---
+
 <section id="contact" class="w-full py-16 max-w-4xl mx-auto px-6">
-  <div>
-    <h2
-      class="text-3xl md:text-4xl font-bold mb-12 text-left text-light-accent dark:text-dark-accent animate-slide-up flex items-center gap-3"
-    >
-      <i class="fas fa-globe"></i>
-      Connect with Me
-    </h2>
-    <div
-      class="flex flex-col md:flex-row gap-8 animate-slide-up"
-      style="animation-delay: 200ms;"
-    >
-      <a
-        href="mailto:mp792819@gmail.com"
-        class="flex items-center gap-2 text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary transition-colors duration-300"
+  <div class="space-y-8">
+    <header class="mb-12">
+      <h2
+        class="text-3xl md:text-4xl font-bold text-left text-light-accent dark:text-dark-accent mb-4 flex items-center gap-3"
       >
-        <i class="fas fa-envelope text-2xl"></i>
-        <span>mp792819@gmail.com</span>
-      </a>
-      <a
-        href="https://github.com/h3nr1d3v"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="flex items-center gap-2 text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary transition-colors duration-300"
-      >
-        <i class="fab fa-github text-2xl"></i>
-        <span>h3nr1d3v</span>
-      </a>
-      <a
-        href="tel:+1234567890"
-        class="flex items-center gap-2 text-light-accent dark:text-dark-accent hover:text-light-tertiary dark:hover:text-dark-tertiary transition-colors duration-300"
-      >
-        <i class="fas fa-phone-alt text-2xl"></i>
-        <span>+1 (000) 000-000</span>
-      </a>
+        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+        Let's Connect
+      </h2>
+      <p class="text-light-tertiary dark:text-dark-tertiary text-lg text-left">
+        Feel free to reach out through any of these platforms
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      {
+        socialLinks.map((link) => (
+          <a
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex items-center gap-4 p-6 bg-light-secondary dark:bg-dark-secondary rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-light-accent dark:focus:ring-dark-accent"
+            aria-label={link.label}
+          >
+            <div class="w-12 h-12 flex items-center justify-center rounded-full bg-light-primary dark:bg-dark-primary text-light-accent dark:text-dark-accent group-hover:scale-110 transition-transform">
+              <i class={`${link.icon} text-2xl`} aria-hidden="true" />
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold text-light-accent dark:text-dark-accent">
+                {link.platform}
+              </h3>
+              <p class="text-sm text-light-tertiary dark:text-dark-tertiary">
+                {getShortenedUrl(link.url)}
+              </p>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="mt-12">
+      <p class="text-light-tertiary dark:text-dark-tertiary text-left">
+        Prefer email? Contact me directly at{" "}
+        <a
+          href="mailto:mp792819@gmail.com"
+          class="text-light-accent dark:text-dark-accent hover:underline focus:outline-none focus:ring-2 focus:ring-light-accent dark:focus:ring-dark-accent rounded"
+        >
+          mp792819@gmail.com
+        </a>
+      </p>
     </div>
   </div>
 </section>

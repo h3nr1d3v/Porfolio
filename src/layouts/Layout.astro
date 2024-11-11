@@ -8,10 +8,9 @@ interface Props {
 
 const { title } = Astro.props;
 
-// Meta tags content
 const description =
   "Henry P's Portfolio - Backend Developer passionate about creating innovative solutions";
-const image = "/images/preview.png"; // Make sure this image exists in your public folder
+const image = "/images/preview.png";
 const url = "https://spectacular-monstera-6836d2.netlify.app";
 ---
 
@@ -19,14 +18,23 @@ const url = "https://spectacular-monstera-6836d2.netlify.app";
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#059669" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
+    <meta name="author" content="Henry P" />
+    <meta name="robots" content="index, follow" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -34,6 +42,7 @@ const url = "https://spectacular-monstera-6836d2.netlify.app";
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={image} />
+    <meta property="og:site_name" content="Henry P's Portfolio" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -41,25 +50,54 @@ const url = "https://spectacular-monstera-6836d2.netlify.app";
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={image} />
+    <meta name="twitter:creator" content="@henryp" />
 
-    <!-- Fonts -->
+    <!-- Preconnect to required origins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+
+    <!-- Preload critical assets -->
     <link
+      rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto+Slab:wght@300;400;500;700&display=swap"
-      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
     <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
       rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto+Slab:wght@300;400;500;700&display=swap"
+        rel="stylesheet"
+      />
+      <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        rel="stylesheet"
+      />
+    </noscript>
+
     <ViewTransitions />
   </head>
   <body
-    class="min-h-screen relative text-gray-900 dark:text-gray-100 transition-colors duration-300"
+    class="min-h-screen relative text-gray-900 dark:text-gray-100 transition-colors duration-300 overflow-x-hidden"
   >
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-light-accent dark:bg-dark-accent text-white px-4 py-2 rounded-lg z-50"
+    >
+      Skip to main content
+    </a>
+
     <div class="fixed inset-0 z-[-2]">
       <!-- Light theme background -->
       <div
         class="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"
+        aria-hidden="true"
       >
         <div
           class="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,#C9EBFF,transparent)]"
@@ -70,12 +108,15 @@ const url = "https://spectacular-monstera-6836d2.netlify.app";
       <!-- Dark theme background -->
       <div
         class="absolute top-0 z-[-2] h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))] hidden dark:block"
+        aria-hidden="true"
       >
       </div>
     </div>
+
     <Navbar />
-    <main class="w-full flex flex-col items-center pt-24">
-      <div class="max-w-[900px] w-full px-4">
+
+    <main id="main-content" class="w-full flex flex-col items-center pt-24">
+      <div class="w-full max-w-[900px] px-4 sm:px-6 mx-auto">
         <slot />
       </div>
     </main>
@@ -84,20 +125,40 @@ const url = "https://spectacular-monstera-6836d2.netlify.app";
 
 <style is:global>
   :root {
-    --font-primary: "Montserrat", sans-serif;
-    --font-secondary: "Roboto Slab", sans-serif;
+    --font-primary: "Montserrat", system-ui, -apple-system, sans-serif;
+    --font-secondary: "Roboto Slab", Georgia, serif;
   }
 
   html {
     font-family: var(--font-primary);
     scroll-behavior: smooth;
     font-size: 16px;
+    -webkit-text-size-adjust: 100%;
   }
 
   @media (min-width: 768px) {
     html {
       font-size: 18px;
     }
+  }
+
+  @media (max-width: 640px) {
+    html {
+      font-size: 14px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    width: 100%;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1,
@@ -110,17 +171,17 @@ const url = "https://spectacular-monstera-6836d2.netlify.app";
   }
 
   h1 {
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 5vw, 2.5rem);
   }
   h2 {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
   }
   h3 {
-    font-size: 1.75rem;
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
   }
 
   p {
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 2vw, 1.125rem);
     line-height: 1.7;
     max-width: 70ch;
   }
@@ -131,6 +192,13 @@ const url = "https://spectacular-monstera-6836d2.netlify.app";
     transition:
       opacity 0.5s ease,
       transform 0.5s ease;
+    width: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    section {
+      transition: none;
+    }
   }
 
   section.visible {
@@ -145,48 +213,41 @@ const url = "https://spectacular-monstera-6836d2.netlify.app";
     padding: 0 1rem;
   }
 
-  .fade-in {
-    animation: fadeIn 0.5s ease-in-out;
+  /* Focus styles */
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
   }
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+  /* High contrast mode support */
+  @media (forced-colors: active) {
+    .text-gradient {
+      -webkit-text-fill-color: currentColor;
     }
   }
 
-  .animate-slide-up {
-    animation: slideUp 0.5s ease-out;
+  /* Content-visibility optimization */
+  .cv-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 500px;
   }
 
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
+  /* Mobile optimizations */
+  @media (max-width: 640px) {
+    .container {
+      padding: 0 0.5rem;
     }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+
+    section {
+      padding-left: 1rem;
+      padding-right: 1rem;
     }
   }
 
-  .animate-slide-in {
-    animation: slideIn 0.5s ease-out;
-  }
-
-  @keyframes slideIn {
-    from {
-      opacity: 0;
-      transform: translateX(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
+  /* Fix for iOS Safari 100vh issue */
+  @supports (-webkit-touch-callout: none) {
+    .min-h-screen {
+      min-height: -webkit-fill-available;
     }
   }
 </style>
@@ -202,7 +263,7 @@ const url = "https://spectacular-monstera-6836d2.netlify.app";
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   setTheme(savedTheme || (prefersDark ? "dark" : "light"));
 
-  // Scroll animation
+  // Intersection Observer with reduced motion preference
   const observerOptions = {
     root: null,
     rootMargin: "0px",
@@ -210,14 +271,29 @@ const url = "https://spectacular-monstera-6836d2.netlify.app";
   };
 
   const observer = new IntersectionObserver((entries) => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      } else {
+        if (prefersReducedMotion) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        } else {
+          entry.target.classList.add("visible");
+        }
+      } else if (!prefersReducedMotion) {
         entry.target.classList.remove("visible");
       }
     });
   }, observerOptions);
+
+  // Fix for iOS Safari viewport height
+  function fixViewportHeight() {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  }
 
   document.addEventListener("astro:page-load", () => {
     document.querySelectorAll("section").forEach((section) => {
@@ -229,5 +305,9 @@ const url = "https://spectacular-monstera-6836d2.netlify.app";
     if (heroSection) {
       heroSection.classList.add("visible");
     }
+
+    // Fix viewport height on load and resize
+    fixViewportHeight();
+    window.addEventListener("resize", fixViewportHeight);
   });
 </script>

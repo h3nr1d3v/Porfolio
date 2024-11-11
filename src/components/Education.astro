@@ -5,7 +5,7 @@ const education = [
     degree: "Systems Engineering",
     period: "2021 -Actually",
     description:
-      "I have been immersed in advanced programming concepts, software architecture, and algorithm design. My coursework includes topics such as data structures, web development and databasese, giving me a strong foundation for tackling complex software development challenges.",
+      "I have been immersed in advanced programming concepts, software architecture, and algorithm design. My coursework includes topics such as data structures, web development and databases, giving me a strong foundation for tackling complex software development challenges.",
   },
   {
     school: "I.E.T.A.C - Antonio De Lebrija",
@@ -17,23 +17,29 @@ const education = [
 ];
 ---
 
-<section id="education" class="w-full py-16 max-w-4xl mx-auto px-6">
+<section
+  id="education"
+  class="w-full py-16 max-w-4xl mx-auto px-6"
+  aria-labelledby="education-title"
+>
   <div class="space-y-8">
     <h2
+      id="education-title"
       class="text-3xl md:text-4xl font-bold mb-12 text-left text-light-accent dark:text-dark-accent animate-slide-up flex items-center gap-3"
     >
-      <i class="fas fa-graduation-cap"></i>
+      <i class="fas fa-graduation-cap" aria-hidden="true"></i>
       Education
     </h2>
 
-    <div class="space-y-8">
+    <div class="space-y-8" role="list">
       {
         education.map((edu, index) => (
-          <div
+          <article
             class="bg-light-secondary dark:bg-dark-secondary rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 animate-slide-in"
             style={`animation-delay: ${index * 200}ms`}
+            role="listitem"
           >
-            <div class="flex justify-between items-start mb-4">
+            <header class="flex justify-between items-start mb-4">
               <div>
                 <h3 class="text-xl font-semibold text-light-accent dark:text-dark-accent">
                   {edu.school}
@@ -42,16 +48,27 @@ const education = [
                   {edu.degree}
                 </p>
               </div>
-              <span class="text-light-tertiary dark:text-dark-tertiary">
+              <time
+                datetime={edu.period.replace(" -", "/")}
+                class="text-light-tertiary dark:text-dark-tertiary"
+              >
                 {edu.period}
-              </span>
-            </div>
+              </time>
+            </header>
             <p class="text-light-accent dark:text-dark-accent">
               {edu.description}
             </p>
-          </div>
+          </article>
         ))
       }
     </div>
   </div>
 </section>
+
+<style>
+  @media (prefers-reduced-motion: reduce) {
+    .animate-slide-in {
+      animation: none !important;
+    }
+  }
+</style>
